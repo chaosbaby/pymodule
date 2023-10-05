@@ -1,13 +1,14 @@
-project = "projectName"
 [folder]
-  [folder.bin]
-  [folder.docs]
-  [folder.flowTest]
-    "__init__.py" = ""
-    "test_mian.py" = ""
+"requirements.txt" = ""
+"setup.py" = """from setuptools import setup, find_packages
+setup(
+    name= "{{ name }}",
+    version= "{{ ver }}",
+    packages=find_packages(),
+    include_package_data=True,
+    install_requires=[
+       {{ requires }} 
+    ],
+    )"""
   [folder.resource]
-  [folder.tests]
-  "requirements.txt" = ""
-  "setup.py" = ""
-
-    
+  
