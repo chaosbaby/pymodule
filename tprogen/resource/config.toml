@@ -1,0 +1,13 @@
+project = "projectName"
+[folder]
+  [folder.bin]
+  [folder.docs]
+  [folder.flowTest]
+    "__init__.py" = ""
+    "test_mian.py" = ""
+  [folder.resource]
+  [folder.tests]
+  "requirements.txt" = ""
+  "setup.py" = ""
+
+    
