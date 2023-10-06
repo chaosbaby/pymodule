@@ -34,10 +34,12 @@ def __gen_struct(config, parent_path=""):
             with open(file_path, "w") as file:
                 file.write(value)
 
-def generate(name="proj", template=None, **kwargs):
+def generate(name="proj", template="", **kwargs):
     settings = kwargs
     settings['name'] = name
-    config = load(template, settings)
+    script_path = os.path.dirname(os.path.abspath(__file__))
+    temp_path = os.path.join(script_path, template)
+    config = load(temp_path, settings)
     __gen_struct(config['folder'], name)
 
 import click
