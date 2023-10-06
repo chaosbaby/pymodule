@@ -8,10 +8,18 @@ class Dict(dict):
                 self.__dict__[key] = value 
 
     def __getattr__(self, attr):
+        if attr not in self.__dict__:
+            self.__dict__[attr] = Dict()
         return self.__dict__[attr]
 
     def __setattr__(self, attr, value):
         self.__dict__[attr] = value
+        
+    def __setitem__(self, attr, value):
+        self.__dict__[attr] = value
+
+    def __getitem__(self, attr):
+        return self.__dict__[attr]
 
     def __delattr__(self, attr):
         del self.__dict__[attr]
@@ -22,34 +30,15 @@ class Dict(dict):
     def __repr__(self):
         return repr(self.__dict__)
 
+    def to_dict(self):
+        dic = {}
+        for key, value in self.__dict__.items():
+            if isinstance(value, Dict):
+                dic[key] = value.to_dict()
+            else:
+                dic[key] = value
+        return dic
 
-def test():
-    obj = Dict()
-# 添加字段
-    obj.name = 'John'
-    obj.age = 25
-    obj.gender = 'Male'
 
-# 打印对象
-    print(obj)  # 输出: {'name': 'John', 'age': 25, 'gender': 'Male'}
 
-# 访问字段
-    print(obj.name)  # 输出: John
-# 修改字段
-    obj.age = 30
-    print(obj.age)  # 输出: 30
 
-    my_dict = {
-        'name': 'jiyikfql',
-        'address': {
-            'country': 'Country A',
-            'city': 'City A',
-            'codes': [1, 2, 3]
-        },
-    }
-
-    obj = Dict(my_dict)
-    print(obj)
-
-if __name__ == "__main__":
-    test()
