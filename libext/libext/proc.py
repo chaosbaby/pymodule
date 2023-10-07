@@ -1,7 +1,22 @@
 import re
 from datetime import datetime
 
+class Every(object):
 
+    def __init__(self, proc):
+        self.proc = proc
+
+    def __call__(self, values):
+            retList = []
+            for v in values:
+                ret = None
+                try:
+                    ret = self.proc(v)
+                except Exception as _:
+                    continue
+                retList.append(ret)
+            return retList
+       
 class Join(object):
 
     def __init__(self, separator=u' '):

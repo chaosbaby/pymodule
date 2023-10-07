@@ -26,3 +26,9 @@ def test_Have():
     assert proc.Have(6)([1, 2, 3, 4, 5, 6, 7, 8]) == True
     assert proc.Have(11)([1, 2, 3, 4, 5, 6, 7, 8]) == False
 
+
+def test_Every():
+    assert proc.Split(' ',-1)("a b c") == "c"
+    li = ["a b c",'aa',None,'c b a']
+    assert proc.Every(proc.Split(' ',-1))(li) == ["c",'aa','a']
+
