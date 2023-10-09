@@ -28,7 +28,7 @@ async def requests(urls, callback,headers={},cookies={}):
 
 async def request(url,callback=None,headers={},cookies={},extra=None):  # <6>
     async with aiohttp.ClientSession(cookies=cookies, headers=headers) as session:
-        await fetch(session, url, callback)
+        await fetch(session, url, callback,extra)
 
 async def params_requests(params,callback):
     tasks = []
